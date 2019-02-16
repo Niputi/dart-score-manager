@@ -31,23 +31,9 @@ async function start () {
     }
   })
 
-  server.route({
-    method: 'GET',
-    path: '/api/',
-    handler: (request, h) => {
-      return 'world!'
-    }
-  })
-
   await server.start()
 
   console.log(`Hapi server listening on http://localhost:3000`)
-
-  for (let index = 0; index < 4; index++) {
-    server.publish('/items', { id: 5, status: 'complete', updater: 'john' })
-    server.publish('/items', { id: 6, status: 'initial', updater: 'steve' })
-  }
-  server.broadcast('welcome!')
 }
 
 start().catch(console.error)

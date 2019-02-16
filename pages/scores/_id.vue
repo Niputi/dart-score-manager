@@ -26,9 +26,7 @@ export default {
   async mounted() {
     const client = new Nes.Client("ws://localhost:3000");
     await client.connect();
-    const handler = (update, flags) => {
-      this.scores = update.scores;
-    };
+    const handler = (update, flags) => this.scores = update.scores;
     await client.subscribe(`/api/chatroom/${this.$route.params.id}`, handler);
   }
 };
